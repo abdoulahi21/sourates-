@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sourates/views/home.dart';
+import 'package:sourates/views/welome.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: HomePage(),
+      home: Welome(),
     );
   }
 }
