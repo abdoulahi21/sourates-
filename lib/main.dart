@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sourates/views/home.dart';
 import 'package:sourates/views/welome.dart';
 void main() {
   runApp(const MyApp());

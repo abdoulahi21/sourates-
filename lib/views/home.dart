@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sourates/style/style.dart';
-
+import 'package:sourates/views/sourate_day.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -55,7 +55,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
 class Dashboard extends StatelessWidget {
   const Dashboard({
     Key? key,
@@ -76,7 +75,9 @@ class Dashboard extends StatelessWidget {
                   image: 'assets/icons/quran.png',
                   title: "Al-Quran audio",
                   color: greenColor,
-                  onpressed: () {}),
+                  onpressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SourateDay()));
+                  }),
               CustomContainer(
                   height1: height * .20,
                   image: 'assets/icons/bookmark.png',
@@ -136,7 +137,7 @@ class CustomContainer extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: width * .06),
       child: GestureDetector(
-        // onTap: onpressed,
+        onTap: onpressed as void Function()?,
         child: Container(
           height: height1,
           width: width * .4,
@@ -199,7 +200,6 @@ class LastReadWidget extends StatelessWidget {
 
   final double height;
   final double width;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
