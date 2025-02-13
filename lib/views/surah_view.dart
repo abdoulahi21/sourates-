@@ -12,62 +12,71 @@ class SurahView extends StatefulWidget {
 
 class _SurahViewState extends State<SurahView> {
   ApiService _apiService = ApiService();
-
+  String _searchText = '';
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      initialIndex: 0,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: backgroundColor,
-          appBar: AppBar(
-            title: Text(
-              'Al-Quran lecture',
-              style: titleGreenStyle(),
-            ),
-            actions: [
-              CircleAvatar(
-                backgroundColor: blueColor,
-                backgroundImage: const AssetImage(
-                  "assets/icons/quran.png",
-                ),
-              )
-            ],
-            bottom: TabBar(
-              tabs: [
-                Tab(text: 'Surah'),
-                Tab(text: 'Sajda'),
-                Tab(text: 'Juz'),
-              ],
-              labelStyle: titleGreenStyle(),
+    return SafeArea(
+      child: Scaffold(
+      backgroundColor: backgroundColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text(
+        'Al-Quran lecture',
+        style: titleGreenStyle(),
+        ),
+        actions: [
+        CircleAvatar(
+          backgroundColor: blueColor,
+          backgroundImage: const AssetImage(
+          "assets/icons/quran.png",
+          ),
+        )
+        ],
+      ),
+      body: Column(
+        children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+          decoration: InputDecoration(
+            hintText: 'Search Surah',
+            prefixIcon: Icon(Icons.search),
+            border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
             ),
           ),
-          body: TabBarView(
-            children: [
-              FutureBuilder(
-                future: _apiService.fetchSouratesList(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<Surah>> snapshot) {
-                  if (snapshot.hasData) {
-                    List<Surah>? surahs = snapshot.data!;
-                    return ListView.builder(
-                      itemCount: surahs.length,
-                      itemBuilder: (BuildContext context, int index) =>
-                          SurahCustomListTile(
-                              surah: surahs[index],
-                              context: context,
-                              ontap: () {}),
-                    );
-                  }
-                  return Center(child: CircularProgressIndicator());
-                },
-              ),
-              Center(child: Text('Contenu Onglet 2')),
-              Center(child: Text('Contenu Onglet 3')),
-            ],
+          onChanged: (value) {
+            setState(() {
+            _searchText = value;
+            });
+          },
           ),
         ),
+        Expanded(
+          child: FutureBuilder(
+          future: _apiService.fetchSouratesList(),
+          builder: (BuildContext context, AsyncSnapshot<List<Surah>> snapshot) {
+            if (snapshot.hasData) {
+            List<Surah>? surahs = snapshot.data!;
+            List<Surah> filteredSurahs = surahs.where((surah) {
+              return surah.englishName.toLowerCase().contains(_searchText.toLowerCase());
+            }).toList();
+            return ListView.builder(
+              itemCount: filteredSurahs.length,
+              itemBuilder: (BuildContext context, int index) =>
+                SurahCustomListTile(
+              surah: filteredSurahs[index],
+              context: context,
+              ontap: () {},
+              ),
+            );
+            }
+            return Center(child: CircularProgressIndicator());
+          },
+          ),
+        ),
+        ],
+      ),
       ),
     );
   }
