@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sourates/views/surah_details.dart';
 import 'package:sourates/views/welome.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +19,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: Welome(),
+      routes: {
+        SurahDetails.id: (context) =>  SurahDetails(),
+      },
     );
   }
 }
-

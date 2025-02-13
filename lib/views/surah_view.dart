@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sourates/services/api_service.dart';
 import 'package:sourates/style/style.dart';
 import 'package:sourates/model/Surah.dart';
+import 'package:sourates/views/surah_details.dart';
 import 'package:sourates/widgets/surah_custom_tile.dart';
+import 'package:sourates/constants/constants.dart';
 class SurahView extends StatefulWidget {
   const SurahView({super.key});
 
@@ -67,7 +69,15 @@ class _SurahViewState extends State<SurahView> {
                 SurahCustomListTile(
               surah: filteredSurahs[index],
               context: context,
-              ontap: () {},
+              ontap: () {
+                setState(() {
+                Constants.surahIndex = (index + 1);
+                });
+                Navigator.pushNamed(
+                context,
+                SurahDetails.id,
+                );
+              },
               ),
             );
             }

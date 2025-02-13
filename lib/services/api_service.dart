@@ -4,11 +4,11 @@ import 'dart:math';
 import 'package:sourates/model/AyaOfTheDay.dart';
 import 'package:sourates/model/Surah.dart';
 import 'package:http/http.dart';
+import 'package:sourates/model/translation.dart';
 
 class ApiService {
-
   final enPointUrl = "http://api.alquran.cloud/v1/surah";
-  List<Surah> list=[];
+  List<Surah> list = [];
 
   //recuperer le sourate du jour
   Future<AyaOfTheDay> fetchSourates() async {
@@ -43,5 +43,12 @@ class ApiService {
     } else {
       throw Exception('Failed to load data');
     }
+  }
+
+  //recuperer les traductions
+  Future<SurahTranslationList> getTranslation(int index) async {
+    final url = "https://quranenc.com/api/v1/translation/sura/french_rashid/$index";
+    var res=await http.get(Uri.parse(url));
+    return SurahTranslationList.fromJson(json.decode(res.body));
   }
 }
