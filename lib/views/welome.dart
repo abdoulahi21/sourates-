@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sourates/style/style.dart';
 import 'package:sourates/views/home.dart';
 
@@ -50,6 +49,11 @@ class _WelomeState extends State<Welome> {
                     fontFamily: 'arial',
                   ),
                 ),
+                Text("Version 1.0",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'arial',
+                    )),
               ],
             ),
           ),

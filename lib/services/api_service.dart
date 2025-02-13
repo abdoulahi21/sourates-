@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:sourates/model/AyaOfTheDay.dart';
 import 'package:sourates/model/Surah.dart';
 import 'package:http/http.dart';
+import 'package:sourates/model/qari.dart';
 import 'package:sourates/model/translation.dart';
 
 class ApiService {
@@ -24,7 +25,7 @@ class ApiService {
   }
 
   random(min, max) {
-    var rn = new Random();
+    var rn = Random();
     return min + rn.nextInt(max - min);
   }
 
@@ -50,5 +51,20 @@ class ApiService {
     final url = "https://quranenc.com/api/v1/translation/sura/french_rashid/$index";
     var res=await http.get(Uri.parse(url));
     return SurahTranslationList.fromJson(json.decode(res.body));
+  }
+
+  //qari
+  List<Qari> qariList = [];
+
+  Future<List<Qari>> fetchQariList() async {
+    final url = "https://quranicaudio.com/api/qaris";
+    final response = await http.get(Uri.parse(url));
+    jsonDecode(response.body).forEach((element) {
+      if (qariList.length < 20) {
+        qariList.add(Qari.fromJson(element));
+      }
+    });
+    qariList.sort((a, b) => a.name!.compareTo(b.name!));
+    return qariList;
   }
 }

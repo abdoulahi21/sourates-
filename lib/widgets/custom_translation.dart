@@ -6,7 +6,7 @@ class TranslationTile extends StatelessWidget {
 final int index;
 final SurahTranslation translation;
 
-TranslationTile({required this.index, required this.translation});
+const TranslationTile({super.key, required this.index, required this.translation});
 
 
   @override
@@ -48,7 +48,7 @@ TranslationTile({required this.index, required this.translation});
               child: Container(
                 padding: EdgeInsets.all(6),
                 alignment: Alignment.center,
-                child: Text("Verset:"+translation.aya!, style: TextStyle(
+                child: Text("Verset:${translation.aya!}", style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                 ),

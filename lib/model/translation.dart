@@ -1,4 +1,3 @@
-import 'package:sourates/model/Surah.dart';
 
 class SurahTranslationList {
   final List<SurahTranslation> translationList;

@@ -13,7 +13,7 @@ class SurahView extends StatefulWidget {
 }
 
 class _SurahViewState extends State<SurahView> {
-  ApiService _apiService = ApiService();
+  final ApiService _apiService = ApiService();
   String _searchText = '';
   @override
   Widget build(BuildContext context) {

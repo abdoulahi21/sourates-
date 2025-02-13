@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sourates/style/style.dart';
-import 'package:sourates/views/sourate_day.dart';
+import 'package:sourates/views/qari_view.dart';
 import 'package:sourates/views/surah_view.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -58,9 +58,9 @@ class HomePage extends StatelessWidget {
 }
 class Dashboard extends StatelessWidget {
   const Dashboard({
-    Key? key,
+    super.key,
     required this.height,
-  }) : super(key: key);
+  });
 
   final double height;
 
@@ -77,7 +77,8 @@ class Dashboard extends StatelessWidget {
                   title: "Al-Quran audio",
                   color: greenColor,
                   onpressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SourateDay()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>QariView
+                    ()));
                   }),
               CustomContainer(
                   height1: height * .20,
@@ -102,7 +103,7 @@ class Dashboard extends StatelessWidget {
               CustomContainer(
                   height1: height * .27,
                   image: 'assets/icons/quran.png',
-                  title: "Al-Quran lectures",
+                  title: "Al-Quran lecture",
                   color: blueColor,
                   onpressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>SurahView()));
@@ -119,13 +120,12 @@ class Dashboard extends StatelessWidget {
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer(
-      {Key? key,
+      {super.key,
       required this.height1,
       required this.image,
       required this.title,
       required this.color,
-      this.onpressed})
-      : super(key: key);
+      this.onpressed});
 
   final double height1;
   final String image;
@@ -196,10 +196,10 @@ class CustomContainer extends StatelessWidget {
 
 class LastReadWidget extends StatelessWidget {
   const LastReadWidget({
-    Key? key,
+    super.key,
     required this.height,
     required this.width,
-  }) : super(key: key);
+  });
 
   final double height;
   final double width;
@@ -269,7 +269,7 @@ class LastReadWidget extends StatelessWidget {
 
 class GotoWidget extends StatelessWidget {
   final VoidCallback? onpressed;
-  const GotoWidget({Key? key, this.onpressed}) : super(key: key);
+  const GotoWidget({super.key, this.onpressed});
 
   @override
   Widget build(BuildContext context) {

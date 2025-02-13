@@ -14,7 +14,7 @@ class SurahDetails extends StatefulWidget {
 }
 
 class _SurahDetailsState extends State<SurahDetails> {
-  ApiService _apiService = ApiService();
+  final ApiService _apiService = ApiService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

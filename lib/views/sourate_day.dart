@@ -10,7 +10,7 @@ class SourateDay extends StatefulWidget {
 }
 
 class _SourateDayState extends State<SourateDay> {
-ApiService _apiService = ApiService();
+final ApiService _apiService = ApiService();
 
   @override
   Widget build(BuildContext context) {
