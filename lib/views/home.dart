@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sourates/style/style.dart';
 import 'package:sourates/views/sourate_day.dart';
+import 'package:sourates/views/surah_view.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -103,7 +104,9 @@ class Dashboard extends StatelessWidget {
                   image: 'assets/icons/quran.png',
                   title: "Al-Quran lectures",
                   color: blueColor,
-                  onpressed: () {}),
+                  onpressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SurahView()));
+                  }),
 
               //CustomContainer(height1: height*.28, width1: width*.4)
             ],

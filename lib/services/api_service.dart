@@ -2,13 +2,18 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
 import 'package:sourates/model/AyaOfTheDay.dart';
+import 'package:sourates/model/Surah.dart';
+import 'package:http/http.dart';
 
+class ApiService {
 
-class ApiService{
+  final enPointUrl = "http://api.alquran.cloud/v1/surah";
+  List<Surah> list=[];
 
   //recuperer le sourate du jour
   Future<AyaOfTheDay> fetchSourates() async {
-    String url = 'http://api.alquran.cloud/v1/ayah/${random(1, 6237)}/editions/quran-uthmani,en.asad,en.pickthall';
+    String url =
+        'http://api.alquran.cloud/v1/ayah/${random(1, 6237)}/editions/quran-uthmani,en.asad,en.pickthall';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
@@ -18,9 +23,25 @@ class ApiService{
     }
   }
 
-  random (min, max){
+  random(min, max) {
     var rn = new Random();
     return min + rn.nextInt(max - min);
+  }
 
+  //recuperer les sourates
+  Future<List<Surah>> fetchSouratesList() async {
+    Response response = await http.get(Uri.parse(enPointUrl));
+    if (response.statusCode == 200) {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      json['data'].forEach((element) {
+        if (list.length < 114) {
+          list.add(Surah.fromJson(element));
+        }
+      });
+      print('ol ${list.length}');
+      return list;
+    } else {
+      throw Exception('Failed to load data');
+    }
   }
 }
