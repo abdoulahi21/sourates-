@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sourates/model/Surah.dart';
 import 'package:sourates/services/api_service.dart';
 import 'package:sourates/constants/constants.dart';
 import 'package:sourates/style/style.dart';

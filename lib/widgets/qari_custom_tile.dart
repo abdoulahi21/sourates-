@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sourates/model/qari.dart';
+import 'package:sourates/model/Qari.dart';
 
 class QariCustomTile extends StatefulWidget {
   const QariCustomTile({super.key, required this.qari, required this.ontap});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sourates/style/style.dart';
-import 'package:sourates/views/qari_view.dart';
+import 'package:sourates/views/qari_list_screen.dart';
 import 'package:sourates/views/surah_view.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -77,7 +77,7 @@ class Dashboard extends StatelessWidget {
                   title: "Al-Quran audio",
                   color: greenColor,
                   onpressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>QariView
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>QariListScreen
                     ()));
                   }),
               CustomContainer(

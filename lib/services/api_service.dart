@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:sourates/model/AyaOfTheDay.dart';
 import 'package:sourates/model/Surah.dart';
 import 'package:http/http.dart';
-import 'package:sourates/model/qari.dart';
+import 'package:sourates/model/Qari.dart';
 import 'package:sourates/model/translation.dart';
 
 class ApiService {
