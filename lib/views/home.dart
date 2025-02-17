@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sourates/style/style.dart';
+import 'package:sourates/views/listes_duas.dart';
 import 'package:sourates/views/qari_list_screen.dart';
+import 'package:sourates/views/sourate_day.dart';
 import 'package:sourates/views/surah_view.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -99,6 +101,9 @@ class Dashboard extends StatelessWidget {
                 image: 'assets/icons/prayer.png',
                 title: "Duas",
                 color: redColor,
+                onpressed: () {
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ListesDuas()));
+                },
               ),
               CustomContainer(
                   height1: height * .27,
@@ -206,62 +211,66 @@ class LastReadWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => Fluttertoast.showToast(msg: "This feature will be available in next release"),
-      onTap: () {},
+      onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SourateDay()),
+      );
+      },
       child: Container(
-        height: height * .15,
-        width: width,
+      height: height * .15,
+      width: width,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(1.5, 3), // changes position of shadow
+          ),
+        ],
+        image: DecorationImage(
+          image: AssetImage('assets/icons/dashboard.png'),
+          fit: BoxFit.fill),
+        borderRadius: BorderRadius.circular(25)),
+      child: Container(
         decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(1.5, 3), // changes position of shadow
-              ),
-            ],
-            image: DecorationImage(
-                image: AssetImage('assets/icons/dashboard.png'),
-                fit: BoxFit.fill),
-            borderRadius: BorderRadius.circular(25)),
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                primaryColor.withOpacity(0.7),
-                secondaryColor.withOpacity(0.7)
-              ]),
-              borderRadius: BorderRadius.circular(25)),
-          child: Row(children: [
-            Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: width * .03, vertical: height * .02),
-                child: SizedBox(
-                  width: width * .4,
-                  child: ListTile(
-                    title: Text(
-                      "Motivation",
-                      style: titleStyle(),
-                    ),
-                    subtitle: Text(
-                      'je reconais et accepte que Dieu est mon Seigneur et mon Sauveur',
-                      style: subtitleStyle(),
-                    ),
-                  ),
-                )),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.only(right: width * .04),
-              child: SizedBox(
-                height: height * .15,
-                width: width * .3,
-                child: Image.asset(
-                  'assets/icons/lamp.png',
-                  fit: BoxFit.fill,
-                ),
-              ),
-            )
+          gradient: LinearGradient(colors: [
+          primaryColor.withOpacity(0.7),
+          secondaryColor.withOpacity(0.7)
           ]),
-        ),
+          borderRadius: BorderRadius.circular(25)),
+        child: Row(children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: width * .03, vertical: height * .02),
+          child: SizedBox(
+            width: width * .4,
+            child: ListTile(
+            title: Text(
+            "Sourate du jour",
+            style: titleStyle(),
+            ),
+            subtitle: Text(
+            'Click moi',
+            style: subtitleStyle(),
+            ),
+            ),
+          )),
+        Spacer(),
+        Padding(
+          padding: EdgeInsets.only(right: width * .04),
+          child: SizedBox(
+          height: height * .15,
+          width: width * .3,
+          child: Image.asset(
+            'assets/icons/lamp.png',
+            fit: BoxFit.fill,
+          ),
+          ),
+        )
+        ]),
+      ),
       ),
     );
   }

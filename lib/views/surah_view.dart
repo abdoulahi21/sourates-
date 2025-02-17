@@ -41,7 +41,7 @@ class _SurahViewState extends State<SurahView> {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
           decoration: InputDecoration(
-            hintText: 'Search Surah',
+            hintText: 'Rechercher une sourate',
             prefixIcon: Icon(Icons.search),
             border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),

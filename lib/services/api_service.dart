@@ -6,6 +6,8 @@ import 'package:sourates/model/Surah.dart';
 import 'package:http/http.dart';
 import 'package:sourates/model/Qari.dart';
 import 'package:sourates/model/translation.dart';
+import 'package:sourates/model/Sadj.dart';
+import 'package:sourates/model/juz.dart';
 
 class ApiService {
   final enPointUrl = "http://api.alquran.cloud/v1/surah";
@@ -22,6 +24,7 @@ class ApiService {
     } else {
       throw Exception('Failed to load data');
     }
+
   }
 
   random(min, max) {
@@ -43,6 +46,30 @@ class ApiService {
       return list;
     } else {
       throw Exception('Failed to load data');
+    }
+  }
+
+  Future<SajdaList> getSajda() async {
+    String url =   "http://api.alquran.cloud/v1/sajda/en.asad";
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      return SajdaList.fromJSON(json.decode(response.body));
+    } else {
+      print("Failed to load");
+      throw Exception("Failed  to Load Post");
+    }
+  }
+
+  Future<JuzModel> getJuzz(int index) async {
+    String url = "http://api.alquran.cloud/v1/juz/$index/quran-uthmani";
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      return JuzModel.fromJSON(json.decode(response.body));
+    } else {
+      print("Failed to load");
+      throw Exception("Failed  to Load Post");
     }
   }
 

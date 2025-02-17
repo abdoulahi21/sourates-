@@ -30,13 +30,45 @@ final ApiService _apiService = ApiService();
     }
 
     // Maintenant, on est sûr que snapshot.data n'est pas null
-    return Column(
-      children: [
-        Text(snapshot.data!.arText ?? 'Texte arabe non disponible'),
-        Text(snapshot.data!.enTran ?? 'Texte anglais non disponible'),
-        Text(snapshot.data!.surNumber ?? 'Numéro inconnu'),
-        Text(snapshot.data!.surEnName ?? 'Nom inconnu'),
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+      decoration: BoxDecoration(
+      color: Colors.grey[200],
+      borderRadius: BorderRadius.circular(10.0),
+      boxShadow: [
+        BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3),
+        ),
       ],
+      ),
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+        snapshot.data!.arText ?? 'Texte arabe non disponible',
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 10),
+        Text(
+        snapshot.data!.enTran ?? 'Texte anglais non disponible',
+        style: TextStyle(fontSize: 16),
+        ),
+        SizedBox(height: 10),
+        Text(
+        'Numéro de Sourate: ${snapshot.data!.surNumber ?? 'Numéro inconnu'}',
+        style: TextStyle(fontSize: 14),
+        ),
+        SizedBox(height: 10),
+        Text(
+        'Nom de la Sourate: ${snapshot.data!.surEnName ?? 'Nom inconnu'}',
+        style: TextStyle(fontSize: 14),
+        ),
+      ],
+      ),
     );
   },
 )

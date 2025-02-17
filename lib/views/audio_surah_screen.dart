@@ -10,7 +10,7 @@ import 'package:sourates/views/audio_screen.dart';
 
 
 class AudioSurahScreen extends StatefulWidget {
-  const AudioSurahScreen({Key? key,required this.qari}) : super(key: key);
+  const AudioSurahScreen({super.key,required this.qari});
   final Qari qari;
 
 
@@ -26,11 +26,21 @@ class _AudioSurahScreenState extends State<AudioSurahScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: backgroundColor,
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Text('Surah List',style: TextStyle(color: Colors.black,
-              fontSize: 20,fontWeight: FontWeight.bold),),
+          backgroundColor: Colors.transparent,
+          title: Text(
+            'Al-Quran lecture',
+            style: titleGreenStyle(),
+          ),
+          actions: [
+            CircleAvatar(
+              backgroundColor: blueColor,
+              backgroundImage: const AssetImage(
+                "assets/icons/quran.png",
+              ),
+            )
+          ],
         ),
         body:  FutureBuilder(
           future: apiServices.fetchSouratesList(),
@@ -90,12 +100,12 @@ Widget AudioTile({required String? surahName,required totalAya,
           children: [
             Container(
               alignment: Alignment.center,
-              height: 30,
-              width: 40,
+              height: 40,
+              width: 50,
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.black,
+                color: Colors.teal,
               ),
               child: Text((number).toString(),
                 style: TextStyle(color:Colors.white ,fontSize: 16,fontWeight: FontWeight.bold),),
@@ -107,17 +117,14 @@ Widget AudioTile({required String? surahName,required totalAya,
                 Text(
                   surahName!,
                   textAlign: TextAlign.end,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                  style: titleGreenStyle(),
                 ),
                 SizedBox(height: 3,),
                 Text("Total Aya : $totalAya" ,style: TextStyle(color: Colors.black54,fontSize: 16),),
               ],
             ),
             Spacer(),
-            Icon(Icons.play_circle_fill,color: Colors.amber,),
+            Icon(Icons.play_circle_fill,color: Colors.teal,),
           ],
         ),
       ),
