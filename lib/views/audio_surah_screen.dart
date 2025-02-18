@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sourates/services/api_service.dart';
 import 'package:sourates/style/style.dart';
 import 'package:sourates/model/Qari.dart';
-import 'package:sourates/views/audio_surah_screen.dart';
-import 'package:sourates/widgets/qari_custom_tile.dart';
 import 'package:sourates/model/Surah.dart';
 import 'package:sourates/views/audio_screen.dart';
 

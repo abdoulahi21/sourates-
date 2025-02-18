@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sourates/style/style.dart';
 import 'package:sourates/views/listes_duas.dart';
+import 'package:sourates/views/prayer_time.dart';
 import 'package:sourates/views/qari_list_screen.dart';
 import 'package:sourates/views/sourate_day.dart';
 import 'package:sourates/views/surah_view.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -34,6 +36,7 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
+        
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .07),
@@ -85,9 +88,11 @@ class Dashboard extends StatelessWidget {
               CustomContainer(
                   height1: height * .20,
                   image: 'assets/icons/bookmark.png',
-                  title: "Hadith",
+                  title: "Heure de prière",
                   color: purpleColor,
-                  onpressed: () {}),
+                  onpressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>PrayerTime()));
+                  }),
               //CustomContainer(height1: height*.28, width1: width*.4)
             ],
           ),

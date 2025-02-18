@@ -30,21 +30,8 @@ final ApiService _apiService = ApiService();
     }
 
     // Maintenant, on est sûr que snapshot.data n'est pas null
-    return Container(
+    return Padding(
       padding: EdgeInsets.all(16.0),
-      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-      decoration: BoxDecoration(
-      color: Colors.grey[200],
-      borderRadius: BorderRadius.circular(10.0),
-      boxShadow: [
-        BoxShadow(
-        color: Colors.grey.withOpacity(0.5),
-        spreadRadius: 5,
-        blurRadius: 7,
-        offset: Offset(0, 3),
-        ),
-      ],
-      ),
       child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
