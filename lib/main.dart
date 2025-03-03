@@ -3,9 +3,8 @@ import 'package:sourates/views/surah_details.dart';
 import 'package:sourates/views/welome.dart';
 
 void main() {
-  runApp(
-    
-    const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Welome(),
       routes: {
-        SurahDetails.id: (context) =>  SurahDetails(),
+        SurahDetails.id: (context) => SurahDetails(),
       },
     );
   }

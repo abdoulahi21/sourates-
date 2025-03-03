@@ -1,9 +1,9 @@
 import 'package:adhan/adhan.dart';
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
 import 'package:sourates/style/style.dart';
 import 'package:intl/intl.dart';
-import 'package:hijri/hijri_calendar.dart';
+import 'package:sourates/services/location.dart';
+//import 'package:hijri/hijri_calendar.dart';
 
 class PrayerTime extends StatefulWidget {
   const PrayerTime({super.key});
@@ -13,9 +13,9 @@ class PrayerTime extends StatefulWidget {
 }
 
 class _PrayerTimeState extends State<PrayerTime> {
-  Location location = Location();
-  LocationData? _currentPosition;
-  double? latitude, longitude;
+   LocationService locationService = LocationService();
+    
+  //var _hijri = HijriCalendar.now();
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +38,14 @@ class _PrayerTimeState extends State<PrayerTime> {
           ],
         ),
         body: FutureBuilder(
-          future: getLoc(),
+          future: locationService.getCurrentLocation(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             }
-            final myCoordinates = Coordinates(14.499454,-14.452362);
-            final params = CalculationMethod.muslim_world_league.getParameters();
+            final myCoordinates = Coordinates(14.499454, -14.452362);
+            final params =
+                CalculationMethod.muslim_world_league.getParameters();
             params.madhab = Madhab.shafi;
             final prayerTimes = PrayerTimes.today(myCoordinates, params);
             return Padding(
@@ -81,29 +82,5 @@ class _PrayerTimeState extends State<PrayerTime> {
     );
   }
 
-  @override
-  getLoc() async {
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return;
-      }
-    }
-
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    _currentPosition = await location.getLocation();
-    latitude = _currentPosition!.latitude!;
-    longitude = _currentPosition!.longitude!;
-  }
+  
 }

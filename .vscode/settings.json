@@ -1,4 +1,5 @@
 {
     "emulator.androidColdBoot": true,
-    "emulator.emulatorPathMac": "~/Library/Android/sdk/emulator"
+    "emulator.emulatorPathMac": "~/Library/Android/sdk/emulator",
+    "C_Cpp.errorSquiggles": "disabled"
 }
